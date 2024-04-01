@@ -1,5 +1,6 @@
 package com.moutamid.readnumberplates;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,6 +16,9 @@ import com.android.volley.toolbox.StringRequest;
 import com.fxn.stash.Stash;
 import com.moutamid.readnumberplates.databinding.ActivityLoginBinding;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,11 +32,6 @@ public class LoginActivity extends AppCompatActivity {
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         Constants.checkApp(this);
-        UserModel userModel = (UserModel) Stash.getObject(Constants.USER, UserModel.class);
-        if (userModel != null) {
-            startActivity(new Intent(this, OcrActivity.class));
-            finish();
-        }
 
         requestQueue = VolleySingleton.getInstance(this).getRequestQueue();
 
@@ -56,15 +55,29 @@ public class LoginActivity extends AppCompatActivity {
 
     private static final String TAG = "LoginActivity";
     private void postFormData() {
+        ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setCancelable(false);
+        progressDialog.setMessage("Please wait...");
+        progressDialog.show();
+
         StringRequest stringRequest = new StringRequest(Request.Method.POST, Constants.login,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        // Handle the response from the server
+                        runOnUiThread(progressDialog::dismiss);
                         Log.d(TAG, "onResponse: " + response);
+                        String token = "";
+                        try {
+                            JSONObject object = new JSONObject(response);
+                            token = object.getString("JWT");
+                            Log.d(TAG, "token: " + token);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                         UserModel userModel = new UserModel();
                         userModel.name = binding.username.getEditText().getText().toString();
                         userModel.password = binding.password.getEditText().getText().toString();
+                        userModel.token = token;
                         Stash.put(Constants.USER, userModel);
                         startActivity(new Intent(LoginActivity.this, OcrActivity.class));
                         finish();
@@ -75,7 +88,10 @@ public class LoginActivity extends AppCompatActivity {
                     public void onErrorResponse(VolleyError error) {
                         // Handle errors
                         Log.d(TAG, "onErrorResponse: " + error.getMessage());
-                        Toast.makeText(LoginActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+                        runOnUiThread(() -> {
+                            progressDialog.dismiss();
+                            Toast.makeText(LoginActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+                        });
                     }
                 }) {
             @Override

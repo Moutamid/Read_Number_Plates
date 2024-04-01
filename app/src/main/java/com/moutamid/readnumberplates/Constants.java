@@ -16,6 +16,9 @@ import java.net.URL;
 public class Constants {
     public static final String Number = "number";
     public static final String USER = "USER";
+    public static final String fileToken = "fileToken";
+    public static final String fileName = "fileName";
+    public static final String mimeType = "mimeType";
     public static final String login = "https://checkpost.vworks.in/api/login";
     public static void checkApp(Activity activity) {
         String appName = "readnumberplates";
