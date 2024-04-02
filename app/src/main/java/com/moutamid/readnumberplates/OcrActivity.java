@@ -204,29 +204,35 @@ public class OcrActivity extends AppCompatActivity {
                     sb.append(myItem.getValue());
                     sb.append("\n");
                 }
+                Log.d(TAG, "sb: " + sb.toString());
                 String result = sb.toString().isEmpty() && !isValidVehicleNumberPlate(sb.toString()) ? "No text Found / Not a valid Pattern" : sb.toString();
                 result = result.replace(" ", "").replace("-", "");
-//                if (!isValidVehicleNumberPlate(result)) {
-//                    binding.Error.setVisibility(View.VISIBLE);
-//                    binding.Error.setText("Ensure your image solely features the valid license plate text without any additional text.");
-//                }
+                if (result.startsWith("IND")){
+                    result = result.replaceFirst("IND", "");
+                }
+                if (!isValidVehicleNumberPlate(result)) {
+                    binding.Error.setVisibility(View.VISIBLE);
+                    binding.Error.setText("Ensure your image solely features the valid license plate text without any additional text.");
+                }
+                Log.d(TAG, "result: " + result);
                 Log.d(TAG, "isValidVehicleNumberPlate: " + isValidVehicleNumberPlate(result));
                 Log.d(TAG, "sb: " + !sb.toString().isEmpty());
                 Log.d(TAG, "both: " + (!sb.toString().isEmpty() && isValidVehicleNumberPlate(result)));
                 binding.result.getEditText().setText(result);
-                binding.submit.setEnabled(!sb.toString().isEmpty());
+                binding.submit.setEnabled((!sb.toString().isEmpty() && isValidVehicleNumberPlate(result)));
             }
         }
     }
 
     public static boolean isValidVehicleNumberPlate(String NUMBERPLATE) {
-        String regex = "^[A-Z]{2}[\\ -]{0,1}[0-9]{2}[\\ -]{0,1}[A-Z]{1,2}[\\ -]{0,1}[0-9]{4}$";
+        String regex = "^[A-Z]{2}\\d{1,3}[A-Z]{1,3}\\d{4}$";
         Pattern p = Pattern.compile(regex);
         if (NUMBERPLATE == null) {
+            Log.d(TAG, "isValidVehicleNumberPlate: NULL");
             return false;
         }
         Matcher m = p.matcher(NUMBERPLATE);
-        return m.matches();
+        return m.find();
     }
 
     public void uploadFile() {
