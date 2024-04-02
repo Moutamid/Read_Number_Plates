@@ -3,6 +3,7 @@ package com.moutamid.readnumberplates;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,8 +26,8 @@ import java.util.Map;
 
 public class SubmitActivity extends AppCompatActivity {
     ActivitySubmitBinding binding;
-    String number;
-    String mimeType, fileName, fileToken;
+    String number = "";
+    String mimeType = "", fileName = "", fileToken = "";
     RequestQueue requestQueue;
 
     @Override
@@ -39,11 +40,11 @@ public class SubmitActivity extends AppCompatActivity {
 
         requestQueue = VolleySingleton.getInstance(this).getRequestQueue();
 
-        number = getIntent().getStringExtra(Constants.Number);
-
-        mimeType = getIntent().getStringExtra(Constants.mimeType);
-        fileName = getIntent().getStringExtra(Constants.fileName);
-        fileToken = getIntent().getStringExtra(Constants.fileToken);
+//        number = getIntent().getStringExtra(Constants.Number);
+//
+//        mimeType = getIntent().getStringExtra(Constants.mimeType);
+//        fileName = getIntent().getStringExtra(Constants.fileName);
+//        fileToken = getIntent().getStringExtra(Constants.fileToken);
 
 
         Log.d(TAG, "fileToken: " + fileToken);
@@ -56,9 +57,111 @@ public class SubmitActivity extends AppCompatActivity {
             postData();
         });
 
+        binding.cashYes.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked){
+                binding.CashValue.setVisibility(View.VISIBLE);
+                binding.CashQty.setVisibility(View.VISIBLE);
+            } else {
+                binding.CashValue.setVisibility(View.GONE);
+                binding.CashQty.setVisibility(View.GONE);
+            }
+        });
+        binding.ChequeYES.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked){
+                binding.ChequeValue.setVisibility(View.VISIBLE);
+                binding.ChequeNo.setVisibility(View.VISIBLE);
+            } else {
+                binding.ChequeNo.setVisibility(View.GONE);
+                binding.ChequeValue.setVisibility(View.GONE);
+            }
+        });
+        binding.TV.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked){
+                binding.TVValue.setVisibility(View.VISIBLE);
+                binding.TVQty.setVisibility(View.VISIBLE);
+            } else {
+                binding.TVQty.setVisibility(View.GONE);
+                binding.TVValue.setVisibility(View.GONE);
+            }
+        });
+
+        binding.Saree.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked){
+                binding.SareeQty.setVisibility(View.VISIBLE);
+                binding.SareeValue.setVisibility(View.VISIBLE);
+            } else {
+                binding.SareeQty.setVisibility(View.GONE);
+                binding.SareeValue.setVisibility(View.GONE);
+            }
+        });
+        binding.PressureCooker.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked){
+                binding.PressureCookerValue.setVisibility(View.VISIBLE);
+                binding.PressureCookerQty.setVisibility(View.VISIBLE);
+            } else {
+                binding.PressureCookerValue.setVisibility(View.GONE);
+                binding.PressureCookerQty.setVisibility(View.GONE);
+            }
+        });
+        binding.Watches.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked){
+                binding.WatchesQty.setVisibility(View.VISIBLE);
+                binding.WatchesValue.setVisibility(View.VISIBLE);
+            } else {
+                binding.WatchesQty.setVisibility(View.GONE);
+                binding.WatchesValue.setVisibility(View.GONE);
+            }
+        });
+        binding.liqureYES.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked){
+                binding.LiquorValue.setVisibility(View.VISIBLE);
+                binding.LiquorQty.setVisibility(View.VISIBLE);
+            } else {
+                binding.LiquorQty.setVisibility(View.GONE);
+                binding.LiquorValue.setVisibility(View.GONE);
+            }
+        });
+        binding.DrugsYES.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked){
+                binding.DrugsValue.setVisibility(View.VISIBLE);
+                binding.DrugsQty.setVisibility(View.VISIBLE);
+            } else {
+                binding.DrugsValue.setVisibility(View.GONE);
+                binding.DrugsQty.setVisibility(View.GONE);
+            }
+        });
+        binding.GoldYES.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked){
+                binding.GoldValue.setVisibility(View.VISIBLE);
+                binding.GoldQty.setVisibility(View.VISIBLE);
+            } else {
+                binding.GoldQty.setVisibility(View.GONE);
+                binding.GoldValue.setVisibility(View.GONE);
+            }
+        });
+        binding.SilverYES.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked){
+                binding.SilverQty.setVisibility(View.VISIBLE);
+                binding.SilverValue.setVisibility(View.VISIBLE);
+            } else {
+                binding.SilverQty.setVisibility(View.GONE);
+                binding.SilverValue.setVisibility(View.GONE);
+            }
+        });
+        binding.FreebieYES.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked){
+                binding.FreebieQty.setVisibility(View.VISIBLE);
+                binding.FreebieValue.setVisibility(View.VISIBLE);
+            } else {
+                binding.FreebieQty.setVisibility(View.GONE);
+                binding.FreebieValue.setVisibility(View.GONE);
+            }
+        });
+
     }
 
     private static final String TAG = "SubmitActivity";
+
     private void postData() {
         JSONObject data = getJson();
         ProgressDialog progressDialog = new ProgressDialog(this);
@@ -87,7 +190,7 @@ public class SubmitActivity extends AppCompatActivity {
                         runOnUiThread(() -> {
                             progressDialog.dismiss();
                             Toast.makeText(SubmitActivity.this, "Error : " + error.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-                           // finish();
+                            // finish();
                         });
                         error.printStackTrace();
                     }
@@ -120,6 +223,7 @@ public class SubmitActivity extends AppCompatActivity {
             String Gold = binding.GoldYES.isChecked() ? "Yes" : "No";
             String Silver = binding.SilverYES.isChecked() ? "Yes" : "No";
             String Freebie = binding.FreebieYES.isChecked() ? "Yes" : "No";
+
 
 //            postData.put("SSTUID", Integer.parseInt(binding.SSTUID.getEditText().getText().toString()));
             postData.put("VehicleNo", binding.VehicleNo.getEditText().getText().toString());
@@ -198,7 +302,7 @@ public class SubmitActivity extends AppCompatActivity {
 
             String file = "https://checkpost.vworks.in/uploads/temp__" + fileToken + "/" + fileName;
             Log.d(TAG, "getJson: " + file);
-            JSONObject image_ref  = new JSONObject();
+            JSONObject image_ref = new JSONObject();
             image_ref.put("type", mimeType);
             image_ref.put("file", file);
             image_ref.put("name", fileName);

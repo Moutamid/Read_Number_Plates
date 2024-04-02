@@ -12,18 +12,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/top_bg"
-        android:orientation="horizontal"
         android:gravity="center_vertical"
+        android:orientation="horizontal"
         android:padding="15dp">
 
         <com.google.android.material.card.MaterialCardView
+            android:id="@+id/back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="12dp"
             android:layout_marginHorizontal="10dp"
             app:cardBackgroundColor="@color/white"
-            app:cardElevation="0dp"
-            android:id="@+id/back">
+            app:cardCornerRadius="12dp"
+            app:cardElevation="0dp">
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -36,9 +36,9 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:paddingHorizontal="12dp"
             android:text="Submit Image"
-            android:layout_weight="1"
             android:textColor="@color/white"
             android:textSize="20dp" />
 
@@ -53,15 +53,15 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="12dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="12dp">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:paddingHorizontal="12dp"
                 android:text="Fill the form"
-                android:layout_weight="1"
                 android:textColor="@color/text"
                 android:textSize="20dp" />
 
@@ -70,23 +70,23 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/top"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="10dp"
                 android:hint="Vehicle No"
                 app:boxBackgroundColor="@color/box"
-                android:layout_below="@id/top"
-                app:boxStrokeWidth="0dp"
                 app:boxCornerRadiusBottomEnd="12dp"
                 app:boxCornerRadiusBottomStart="12dp"
                 app:boxCornerRadiusTopEnd="12dp"
                 app:boxCornerRadiusTopStart="12dp"
-                android:layout_marginHorizontal="15dp"
-                app:boxStrokeWidthFocused="0dp"
-                android:layout_marginTop="10dp">
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="0"
-                    android:inputType="textPersonName" />
+                    android:inputType="textPersonName"
+                    android:text="0" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -109,6 +109,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Yes" />
+
                 <com.google.android.material.radiobutton.MaterialRadioButton
                     android:id="@+id/cashNO"
                     android:layout_width="wrap_content"
@@ -123,47 +124,50 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Cash qty"
-                app:boxBackgroundColor="@color/box"
                 android:layout_below="@id/top"
-                app:boxStrokeWidth="0dp"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="10dp"
+                android:hint="Cash qty"
+                android:visibility="gone"
+                app:boxBackgroundColor="@color/box"
                 app:boxCornerRadiusBottomEnd="12dp"
                 app:boxCornerRadiusBottomStart="12dp"
                 app:boxCornerRadiusTopEnd="12dp"
                 app:boxCornerRadiusTopStart="12dp"
-                android:layout_marginHorizontal="15dp"
-                app:boxStrokeWidthFocused="0dp"
-                android:layout_marginTop="10dp">
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="0"
-                    android:inputType="number" />
+                    android:inputType="number"
+                    android:text="0" />
 
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/Cash_Value"
                 style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Cash Value"
-                app:boxBackgroundColor="@color/box"
                 android:layout_below="@id/top"
-                app:boxStrokeWidth="0dp"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="10dp"
+                android:hint="Cash Value"
+                android:visibility="gone"
+                app:boxBackgroundColor="@color/box"
                 app:boxCornerRadiusBottomEnd="12dp"
                 app:boxCornerRadiusBottomStart="12dp"
                 app:boxCornerRadiusTopEnd="12dp"
                 app:boxCornerRadiusTopStart="12dp"
-                android:layout_marginHorizontal="15dp"
-                app:boxStrokeWidthFocused="0dp"
-                android:layout_marginTop="10dp">
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="0"
-                    android:inputType="number" />
+                    android:inputType="number"
+                    android:text="0" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -187,6 +191,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Yes" />
+
                 <com.google.android.material.radiobutton.MaterialRadioButton
                     android:id="@+id/liqureNO"
                     android:layout_width="wrap_content"
@@ -201,47 +206,50 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Liquor qty"
-                app:boxBackgroundColor="@color/box"
                 android:layout_below="@id/top"
-                app:boxStrokeWidth="0dp"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="10dp"
+                android:hint="Liquor qty"
+                android:visibility="gone"
+                app:boxBackgroundColor="@color/box"
                 app:boxCornerRadiusBottomEnd="12dp"
                 app:boxCornerRadiusBottomStart="12dp"
                 app:boxCornerRadiusTopEnd="12dp"
                 app:boxCornerRadiusTopStart="12dp"
-                android:layout_marginHorizontal="15dp"
-                app:boxStrokeWidthFocused="0dp"
-                android:layout_marginTop="10dp">
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="0"
-                    android:inputType="number" />
+                    android:inputType="number"
+                    android:text="0" />
 
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/Liquor_value"
                 style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Liquor Value"
-                app:boxBackgroundColor="@color/box"
                 android:layout_below="@id/top"
-                app:boxStrokeWidth="0dp"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="10dp"
+                android:hint="Liquor Value"
+                android:visibility="gone"
+                app:boxBackgroundColor="@color/box"
                 app:boxCornerRadiusBottomEnd="12dp"
                 app:boxCornerRadiusBottomStart="12dp"
                 app:boxCornerRadiusTopEnd="12dp"
                 app:boxCornerRadiusTopStart="12dp"
-                android:layout_marginHorizontal="15dp"
-                app:boxStrokeWidthFocused="0dp"
-                android:layout_marginTop="10dp">
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="0"
-                    android:inputType="number" />
+                    android:inputType="number"
+                    android:text="0" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -264,6 +272,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Yes" />
+
                 <com.google.android.material.radiobutton.MaterialRadioButton
                     android:id="@+id/drugsNO"
                     android:layout_width="wrap_content"
@@ -278,47 +287,50 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Drugs qty"
-                app:boxBackgroundColor="@color/box"
                 android:layout_below="@id/top"
-                app:boxStrokeWidth="0dp"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="10dp"
+                android:hint="Drugs qty"
+                android:visibility="gone"
+                app:boxBackgroundColor="@color/box"
                 app:boxCornerRadiusBottomEnd="12dp"
                 app:boxCornerRadiusBottomStart="12dp"
                 app:boxCornerRadiusTopEnd="12dp"
                 app:boxCornerRadiusTopStart="12dp"
-                android:layout_marginHorizontal="15dp"
-                app:boxStrokeWidthFocused="0dp"
-                android:layout_marginTop="10dp">
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="0"
-                    android:inputType="number" />
+                    android:inputType="number"
+                    android:text="0" />
 
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/Drugs_Value"
                 style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Drugs Value"
-                app:boxBackgroundColor="@color/box"
                 android:layout_below="@id/top"
-                app:boxStrokeWidth="0dp"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="10dp"
+                android:hint="Drugs Value"
+                android:visibility="gone"
+                app:boxBackgroundColor="@color/box"
                 app:boxCornerRadiusBottomEnd="12dp"
                 app:boxCornerRadiusBottomStart="12dp"
                 app:boxCornerRadiusTopEnd="12dp"
                 app:boxCornerRadiusTopStart="12dp"
-                android:layout_marginHorizontal="15dp"
-                app:boxStrokeWidthFocused="0dp"
-                android:layout_marginTop="10dp">
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="0"
-                    android:inputType="number" />
+                    android:inputType="number"
+                    android:text="0" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -341,6 +353,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Yes" />
+
                 <com.google.android.material.radiobutton.MaterialRadioButton
                     android:id="@+id/GoldNo"
                     android:layout_width="wrap_content"
@@ -355,47 +368,50 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Gold qty"
-                app:boxBackgroundColor="@color/box"
                 android:layout_below="@id/top"
-                app:boxStrokeWidth="0dp"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="10dp"
+                android:hint="Gold qty"
+                android:visibility="gone"
+                app:boxBackgroundColor="@color/box"
                 app:boxCornerRadiusBottomEnd="12dp"
                 app:boxCornerRadiusBottomStart="12dp"
                 app:boxCornerRadiusTopEnd="12dp"
                 app:boxCornerRadiusTopStart="12dp"
-                android:layout_marginHorizontal="15dp"
-                app:boxStrokeWidthFocused="0dp"
-                android:layout_marginTop="10dp">
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="0"
-                    android:inputType="number" />
+                    android:inputType="number"
+                    android:text="0" />
 
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/Gold_Value"
                 style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Gold Value"
-                app:boxBackgroundColor="@color/box"
                 android:layout_below="@id/top"
-                app:boxStrokeWidth="0dp"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="10dp"
+                android:hint="Gold Value"
+                android:visibility="gone"
+                app:boxBackgroundColor="@color/box"
                 app:boxCornerRadiusBottomEnd="12dp"
                 app:boxCornerRadiusBottomStart="12dp"
                 app:boxCornerRadiusTopEnd="12dp"
                 app:boxCornerRadiusTopStart="12dp"
-                android:layout_marginHorizontal="15dp"
-                app:boxStrokeWidthFocused="0dp"
-                android:layout_marginTop="10dp">
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="0"
-                    android:inputType="number" />
+                    android:inputType="number"
+                    android:text="0" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -418,6 +434,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Yes" />
+
                 <com.google.android.material.radiobutton.MaterialRadioButton
                     android:id="@+id/SilverNO"
                     android:layout_width="wrap_content"
@@ -432,47 +449,50 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Silver qty"
-                app:boxBackgroundColor="@color/box"
                 android:layout_below="@id/top"
-                app:boxStrokeWidth="0dp"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="10dp"
+                android:hint="Silver qty"
+                android:visibility="gone"
+                app:boxBackgroundColor="@color/box"
                 app:boxCornerRadiusBottomEnd="12dp"
                 app:boxCornerRadiusBottomStart="12dp"
                 app:boxCornerRadiusTopEnd="12dp"
                 app:boxCornerRadiusTopStart="12dp"
-                android:layout_marginHorizontal="15dp"
-                app:boxStrokeWidthFocused="0dp"
-                android:layout_marginTop="10dp">
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="0"
-                    android:inputType="number" />
+                    android:inputType="number"
+                    android:text="0" />
 
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/Silver_Value"
                 style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Silver Value"
-                app:boxBackgroundColor="@color/box"
                 android:layout_below="@id/top"
-                app:boxStrokeWidth="0dp"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="10dp"
+                android:hint="Silver Value"
+                android:visibility="gone"
+                app:boxBackgroundColor="@color/box"
                 app:boxCornerRadiusBottomEnd="12dp"
                 app:boxCornerRadiusBottomStart="12dp"
                 app:boxCornerRadiusTopEnd="12dp"
                 app:boxCornerRadiusTopStart="12dp"
-                android:layout_marginHorizontal="15dp"
-                app:boxStrokeWidthFocused="0dp"
-                android:layout_marginTop="10dp">
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="0"
-                    android:inputType="number" />
+                    android:inputType="number"
+                    android:text="0" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -486,8 +506,8 @@
             <RadioGroup
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:checkedButton="@id/FreebieNO"
                 android:layout_marginHorizontal="15dp"
+                android:checkedButton="@id/FreebieNO"
                 android:orientation="horizontal">
 
                 <com.google.android.material.radiobutton.MaterialRadioButton
@@ -495,6 +515,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Yes" />
+
                 <com.google.android.material.radiobutton.MaterialRadioButton
                     android:id="@+id/FreebieNO"
                     android:layout_width="wrap_content"
@@ -509,47 +530,50 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Freebie qty"
-                app:boxBackgroundColor="@color/box"
                 android:layout_below="@id/top"
-                app:boxStrokeWidth="0dp"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="10dp"
+                android:hint="Freebie qty"
+                android:visibility="gone"
+                app:boxBackgroundColor="@color/box"
                 app:boxCornerRadiusBottomEnd="12dp"
                 app:boxCornerRadiusBottomStart="12dp"
                 app:boxCornerRadiusTopEnd="12dp"
                 app:boxCornerRadiusTopStart="12dp"
-                android:layout_marginHorizontal="15dp"
-                app:boxStrokeWidthFocused="0dp"
-                android:layout_marginTop="10dp">
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="0"
-                    android:inputType="number" />
+                    android:inputType="number"
+                    android:text="0" />
 
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/Freebie_Value"
                 style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Freebie Value"
-                app:boxBackgroundColor="@color/box"
                 android:layout_below="@id/top"
-                app:boxStrokeWidth="0dp"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="10dp"
+                android:hint="Freebie Value"
+                android:visibility="gone"
+                app:boxBackgroundColor="@color/box"
                 app:boxCornerRadiusBottomEnd="12dp"
                 app:boxCornerRadiusBottomStart="12dp"
                 app:boxCornerRadiusTopEnd="12dp"
                 app:boxCornerRadiusTopStart="12dp"
-                android:layout_marginHorizontal="15dp"
-                app:boxStrokeWidthFocused="0dp"
-                android:layout_marginTop="10dp">
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="0"
-                    android:inputType="number" />
+                    android:inputType="number"
+                    android:text="0" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -559,6 +583,7 @@
                 android:layout_marginHorizontal="15dp"
                 android:layout_marginTop="10dp"
                 android:text="Cheque" />
+
             <RadioGroup
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -571,6 +596,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Yes" />
+
                 <com.google.android.material.radiobutton.MaterialRadioButton
                     android:id="@+id/ChequeNO"
                     android:layout_width="wrap_content"
@@ -579,52 +605,56 @@
                     android:text="No" />
 
             </RadioGroup>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/Cheque_No"
                 style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Cheque qty"
-                app:boxBackgroundColor="@color/box"
                 android:layout_below="@id/top"
-                app:boxStrokeWidth="0dp"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="10dp"
+                android:hint="Cheque qty"
+                android:visibility="gone"
+                app:boxBackgroundColor="@color/box"
                 app:boxCornerRadiusBottomEnd="12dp"
                 app:boxCornerRadiusBottomStart="12dp"
                 app:boxCornerRadiusTopEnd="12dp"
                 app:boxCornerRadiusTopStart="12dp"
-                android:layout_marginHorizontal="15dp"
-                app:boxStrokeWidthFocused="0dp"
-                android:layout_marginTop="10dp">
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="0"
-                    android:inputType="number" />
+                    android:inputType="number"
+                    android:text="0" />
 
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/Cheque_Value"
                 style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Cheque Value"
-                app:boxBackgroundColor="@color/box"
                 android:layout_below="@id/top"
-                app:boxStrokeWidth="0dp"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="10dp"
+                android:hint="Cheque Value"
+                android:visibility="gone"
+                app:boxBackgroundColor="@color/box"
                 app:boxCornerRadiusBottomEnd="12dp"
                 app:boxCornerRadiusBottomStart="12dp"
                 app:boxCornerRadiusTopEnd="12dp"
                 app:boxCornerRadiusTopStart="12dp"
-                android:layout_marginHorizontal="15dp"
-                app:boxStrokeWidthFocused="0dp"
-                android:layout_marginTop="10dp">
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="0"
-                    android:inputType="number" />
+                    android:inputType="number"
+                    android:text="0" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -634,6 +664,7 @@
                 android:layout_marginHorizontal="15dp"
                 android:layout_marginTop="10dp"
                 android:text="Saree" />
+
             <RadioGroup
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -646,6 +677,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Yes" />
+
                 <com.google.android.material.radiobutton.MaterialRadioButton
                     android:id="@+id/SareeNO"
                     android:layout_width="wrap_content"
@@ -654,52 +686,56 @@
                     android:text="No" />
 
             </RadioGroup>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/Saree_Qty"
                 style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Saree qty"
-                app:boxBackgroundColor="@color/box"
                 android:layout_below="@id/top"
-                app:boxStrokeWidth="0dp"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="10dp"
+                android:hint="Saree qty"
+                android:visibility="gone"
+                app:boxBackgroundColor="@color/box"
                 app:boxCornerRadiusBottomEnd="12dp"
                 app:boxCornerRadiusBottomStart="12dp"
                 app:boxCornerRadiusTopEnd="12dp"
                 app:boxCornerRadiusTopStart="12dp"
-                android:layout_marginHorizontal="15dp"
-                app:boxStrokeWidthFocused="0dp"
-                android:layout_marginTop="10dp">
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="0"
-                    android:inputType="number" />
+                    android:inputType="number"
+                    android:text="0" />
 
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/Saree_Value"
                 style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Saree Value"
-                app:boxBackgroundColor="@color/box"
                 android:layout_below="@id/top"
-                app:boxStrokeWidth="0dp"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="10dp"
+                android:hint="Saree Value"
+                android:visibility="gone"
+                app:boxBackgroundColor="@color/box"
                 app:boxCornerRadiusBottomEnd="12dp"
                 app:boxCornerRadiusBottomStart="12dp"
                 app:boxCornerRadiusTopEnd="12dp"
                 app:boxCornerRadiusTopStart="12dp"
-                android:layout_marginHorizontal="15dp"
-                app:boxStrokeWidthFocused="0dp"
-                android:layout_marginTop="10dp">
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="0"
-                    android:inputType="number" />
+                    android:inputType="number"
+                    android:text="0" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -709,6 +745,7 @@
                 android:layout_marginHorizontal="15dp"
                 android:layout_marginTop="10dp"
                 android:text="TV" />
+
             <RadioGroup
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -721,6 +758,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Yes" />
+
                 <com.google.android.material.radiobutton.MaterialRadioButton
                     android:id="@+id/TVNO"
                     android:layout_width="wrap_content"
@@ -729,52 +767,56 @@
                     android:text="No" />
 
             </RadioGroup>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/TV_Qty"
                 style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="TV qty"
-                app:boxBackgroundColor="@color/box"
                 android:layout_below="@id/top"
-                app:boxStrokeWidth="0dp"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="10dp"
+                android:hint="TV qty"
+                android:visibility="gone"
+                app:boxBackgroundColor="@color/box"
                 app:boxCornerRadiusBottomEnd="12dp"
                 app:boxCornerRadiusBottomStart="12dp"
                 app:boxCornerRadiusTopEnd="12dp"
                 app:boxCornerRadiusTopStart="12dp"
-                android:layout_marginHorizontal="15dp"
-                app:boxStrokeWidthFocused="0dp"
-                android:layout_marginTop="10dp">
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="0"
-                    android:inputType="number" />
+                    android:inputType="number"
+                    android:text="0" />
 
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/TV_Value"
                 style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="TV Value"
-                app:boxBackgroundColor="@color/box"
                 android:layout_below="@id/top"
-                app:boxStrokeWidth="0dp"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="10dp"
+                android:hint="TV Value"
+                android:visibility="gone"
+                app:boxBackgroundColor="@color/box"
                 app:boxCornerRadiusBottomEnd="12dp"
                 app:boxCornerRadiusBottomStart="12dp"
                 app:boxCornerRadiusTopEnd="12dp"
                 app:boxCornerRadiusTopStart="12dp"
-                android:layout_marginHorizontal="15dp"
-                app:boxStrokeWidthFocused="0dp"
-                android:layout_marginTop="10dp">
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="0"
-                    android:inputType="number" />
+                    android:inputType="number"
+                    android:text="0" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -784,6 +826,7 @@
                 android:layout_marginHorizontal="15dp"
                 android:layout_marginTop="10dp"
                 android:text="Watches" />
+
             <RadioGroup
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -796,6 +839,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Yes" />
+
                 <com.google.android.material.radiobutton.MaterialRadioButton
                     android:id="@+id/WatchesNO"
                     android:layout_width="wrap_content"
@@ -804,52 +848,56 @@
                     android:text="No" />
 
             </RadioGroup>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/Watches_qty"
                 style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Watches qty"
-                app:boxBackgroundColor="@color/box"
                 android:layout_below="@id/top"
-                app:boxStrokeWidth="0dp"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="10dp"
+                android:hint="Watches qty"
+                android:visibility="gone"
+                app:boxBackgroundColor="@color/box"
                 app:boxCornerRadiusBottomEnd="12dp"
                 app:boxCornerRadiusBottomStart="12dp"
                 app:boxCornerRadiusTopEnd="12dp"
                 app:boxCornerRadiusTopStart="12dp"
-                android:layout_marginHorizontal="15dp"
-                app:boxStrokeWidthFocused="0dp"
-                android:layout_marginTop="10dp">
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="0"
-                    android:inputType="number" />
+                    android:inputType="number"
+                    android:text="0" />
 
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/Watches_value"
                 style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Watches Value"
-                app:boxBackgroundColor="@color/box"
                 android:layout_below="@id/top"
-                app:boxStrokeWidth="0dp"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="10dp"
+                android:hint="Watches Value"
+                android:visibility="gone"
+                app:boxBackgroundColor="@color/box"
                 app:boxCornerRadiusBottomEnd="12dp"
                 app:boxCornerRadiusBottomStart="12dp"
                 app:boxCornerRadiusTopEnd="12dp"
                 app:boxCornerRadiusTopStart="12dp"
-                android:layout_marginHorizontal="15dp"
-                app:boxStrokeWidthFocused="0dp"
-                android:layout_marginTop="10dp">
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="0"
-                    android:inputType="number" />
+                    android:inputType="number"
+                    android:text="0" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -859,6 +907,7 @@
                 android:layout_marginHorizontal="15dp"
                 android:layout_marginTop="10dp"
                 android:text="Pressure Cooker" />
+
             <RadioGroup
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -871,6 +920,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Yes" />
+
                 <com.google.android.material.radiobutton.MaterialRadioButton
                     android:id="@+id/Pressure_CookerNO"
                     android:layout_width="wrap_content"
@@ -879,52 +929,56 @@
                     android:text="No" />
 
             </RadioGroup>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/Pressure_Cooker_qty"
                 style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Pressure Cooker qty"
-                app:boxBackgroundColor="@color/box"
                 android:layout_below="@id/top"
-                app:boxStrokeWidth="0dp"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="10dp"
+                android:hint="Pressure Cooker qty"
+                android:visibility="gone"
+                app:boxBackgroundColor="@color/box"
                 app:boxCornerRadiusBottomEnd="12dp"
                 app:boxCornerRadiusBottomStart="12dp"
                 app:boxCornerRadiusTopEnd="12dp"
                 app:boxCornerRadiusTopStart="12dp"
-                android:layout_marginHorizontal="15dp"
-                app:boxStrokeWidthFocused="0dp"
-                android:layout_marginTop="10dp">
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="0"
-                    android:inputType="number" />
+                    android:inputType="number"
+                    android:text="0" />
 
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/Pressure_Cooker_value"
                 style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Pressure Cooker Value"
-                app:boxBackgroundColor="@color/box"
                 android:layout_below="@id/top"
-                app:boxStrokeWidth="0dp"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="10dp"
+                android:hint="Pressure Cooker Value"
+                android:visibility="gone"
+                app:boxBackgroundColor="@color/box"
                 app:boxCornerRadiusBottomEnd="12dp"
                 app:boxCornerRadiusBottomStart="12dp"
                 app:boxCornerRadiusTopEnd="12dp"
                 app:boxCornerRadiusTopStart="12dp"
-                android:layout_marginHorizontal="15dp"
-                app:boxStrokeWidthFocused="0dp"
-                android:layout_marginTop="10dp">
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="0"
-                    android:inputType="number" />
+                    android:inputType="number"
+                    android:text="0" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -933,47 +987,48 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/top"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="10dp"
                 android:hint="Misc"
                 app:boxBackgroundColor="@color/box"
-                android:layout_below="@id/top"
-                app:boxStrokeWidth="0dp"
                 app:boxCornerRadiusBottomEnd="12dp"
                 app:boxCornerRadiusBottomStart="12dp"
                 app:boxCornerRadiusTopEnd="12dp"
                 app:boxCornerRadiusTopStart="12dp"
-                android:layout_marginHorizontal="15dp"
-                app:boxStrokeWidthFocused="0dp"
-                android:layout_marginTop="10dp">
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text=""
-                    android:inputType="textPersonName" />
+                    android:inputType="textPersonName"
+                    android:text="" />
 
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/Misc_qty"
                 style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/top"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="10dp"
                 android:hint="Misc qty"
                 app:boxBackgroundColor="@color/box"
-                android:layout_below="@id/top"
-                app:boxStrokeWidth="0dp"
                 app:boxCornerRadiusBottomEnd="12dp"
                 app:boxCornerRadiusBottomStart="12dp"
                 app:boxCornerRadiusTopEnd="12dp"
                 app:boxCornerRadiusTopStart="12dp"
-                android:layout_marginHorizontal="15dp"
-                app:boxStrokeWidthFocused="0dp"
-                android:layout_marginTop="10dp">
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="0"
-                    android:inputType="number" />
+                    android:inputType="number"
+                    android:text="0" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -982,23 +1037,23 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/top"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="10dp"
                 android:hint="Misc value"
                 app:boxBackgroundColor="@color/box"
-                android:layout_below="@id/top"
-                app:boxStrokeWidth="0dp"
                 app:boxCornerRadiusBottomEnd="12dp"
                 app:boxCornerRadiusBottomStart="12dp"
                 app:boxCornerRadiusTopEnd="12dp"
                 app:boxCornerRadiusTopStart="12dp"
-                android:layout_marginHorizontal="15dp"
-                app:boxStrokeWidthFocused="0dp"
-                android:layout_marginTop="10dp">
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="0"
-                    android:inputType="number" />
+                    android:inputType="number"
+                    android:text="0" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -1007,23 +1062,23 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/top"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="10dp"
                 android:hint="Other Materials"
                 app:boxBackgroundColor="@color/box"
-                android:layout_below="@id/top"
-                app:boxStrokeWidth="0dp"
                 app:boxCornerRadiusBottomEnd="12dp"
                 app:boxCornerRadiusBottomStart="12dp"
                 app:boxCornerRadiusTopEnd="12dp"
                 app:boxCornerRadiusTopStart="12dp"
-                android:layout_marginHorizontal="15dp"
-                app:boxStrokeWidthFocused="0dp"
-                android:layout_marginTop="10dp">
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text=""
-                    android:inputType="textPersonName" />
+                    android:inputType="textPersonName"
+                    android:text="" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
