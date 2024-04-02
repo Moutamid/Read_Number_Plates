@@ -59,7 +59,7 @@ public class LoginActivity extends AppCompatActivity {
         progressDialog.setCancelable(false);
         progressDialog.setMessage("Please wait...");
         progressDialog.show();
-
+        Log.d(TAG, "postFormData: " + Constants.login);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, Constants.login,
                 new Response.Listener<String>() {
                     @Override
@@ -90,7 +90,7 @@ public class LoginActivity extends AppCompatActivity {
                         Log.d(TAG, "onErrorResponse: " + error.getMessage());
                         runOnUiThread(() -> {
                             progressDialog.dismiss();
-                            Toast.makeText(LoginActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "Error " + error.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
                         });
                     }
                 }) {

@@ -70,9 +70,13 @@ public class OcrActivity extends AppCompatActivity {
         UserModel userModel = (UserModel) Stash.getObject(Constants.USER, UserModel.class);
         Log.d(TAG, "onCreate: " + userModel.token);
 
-        cameraPermission = new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_MEDIA_IMAGES, Manifest.permission.READ_MEDIA_VIDEO};
-        //storage permission
-        storagePermission = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_MEDIA_IMAGES, Manifest.permission.READ_MEDIA_VIDEO};
+        cameraPermission = new String[]{Manifest.permission.CAMERA,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_MEDIA_IMAGES,
+                Manifest.permission.READ_MEDIA_VISUAL_USER_SELECTED,
+                Manifest.permission.READ_MEDIA_VIDEO};
+
+        storagePermission = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.READ_MEDIA_VISUAL_USER_SELECTED, Manifest.permission.READ_MEDIA_IMAGES, Manifest.permission.READ_MEDIA_VIDEO};
 
         binding.pick.setOnClickListener(v -> {
             new MaterialAlertDialogBuilder(this)
@@ -135,17 +139,25 @@ public class OcrActivity extends AppCompatActivity {
         shouldShowRequestPermissionRationale(storagePermission[0]);
         shouldShowRequestPermissionRationale(storagePermission[1]);
         shouldShowRequestPermissionRationale(storagePermission[2]);
+        shouldShowRequestPermissionRationale(storagePermission[3]);
         ActivityCompat.requestPermissions(this, storagePermission, STORAGE_REQUEST_CODE);
     }
 
     private boolean checkCameraPermission() {
         boolean result = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == (PackageManager.PERMISSION_GRANTED);
         boolean result1 = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == (PackageManager.PERMISSION_GRANTED);
-        return result && result1;
+        boolean result2 = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_MEDIA_VIDEO) == (PackageManager.PERMISSION_GRANTED);
+        boolean result3 = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_MEDIA_IMAGES) == (PackageManager.PERMISSION_GRANTED);
+        boolean result4 = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_MEDIA_VISUAL_USER_SELECTED) == (PackageManager.PERMISSION_GRANTED);
+        return result && result1 && result2 && result3 && result4;
     }
 
     private boolean checkStoragePermission() {
-        return ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == (PackageManager.PERMISSION_GRANTED);
+        boolean result1 = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == (PackageManager.PERMISSION_GRANTED);
+        boolean result2 = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_MEDIA_VIDEO) == (PackageManager.PERMISSION_GRANTED);
+        boolean result3 = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_MEDIA_IMAGES) == (PackageManager.PERMISSION_GRANTED);
+        boolean result4 = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_MEDIA_VISUAL_USER_SELECTED) == (PackageManager.PERMISSION_GRANTED);
+        return result1 && result2 && result3 && result4;
     }
 
     private void requestCameraPermission() {
@@ -153,6 +165,7 @@ public class OcrActivity extends AppCompatActivity {
         shouldShowRequestPermissionRationale(cameraPermission[1]);
         shouldShowRequestPermissionRationale(cameraPermission[2]);
         shouldShowRequestPermissionRationale(cameraPermission[3]);
+        shouldShowRequestPermissionRationale(cameraPermission[4]);
         ActivityCompat.requestPermissions(this, cameraPermission, CAMERA_REQUEST_CODE);
     }
 
@@ -164,7 +177,10 @@ public class OcrActivity extends AppCompatActivity {
                 if (grantResults.length > 0) {
                     boolean cameraAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
                     boolean writeStorageAccepted = grantResults[1] == PackageManager.PERMISSION_GRANTED;
-                    if (cameraAccepted && writeStorageAccepted) {
+                    boolean READ_IMAGE = grantResults[2] == PackageManager.PERMISSION_GRANTED;
+                    boolean READ_VIDEO = grantResults[3] == PackageManager.PERMISSION_GRANTED;
+                    boolean READ_MEDIA = grantResults[4] == PackageManager.PERMISSION_GRANTED;
+                    if (cameraAccepted && writeStorageAccepted && READ_MEDIA && READ_IMAGE && READ_VIDEO) {
                         pickCamera();
                     } else {
                         Toast.makeText(this, "Permission denied", Toast.LENGTH_SHORT).show();
@@ -175,7 +191,10 @@ public class OcrActivity extends AppCompatActivity {
             case STORAGE_REQUEST_CODE:
                 if (grantResults.length > 0) {
                     boolean writeStorageAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
-                    if (writeStorageAccepted) {
+                    boolean READ_IMAGE = grantResults[1] == PackageManager.PERMISSION_GRANTED;
+                    boolean READ_VIDEO = grantResults[2] == PackageManager.PERMISSION_GRANTED;
+                    boolean READ_MEDIA = grantResults[3] == PackageManager.PERMISSION_GRANTED;
+                    if (writeStorageAccepted && READ_MEDIA && READ_IMAGE && READ_VIDEO) {
                         pickGallery();
                     } else {
                         Toast.makeText(this, "Permission denied", Toast.LENGTH_SHORT).show();
