@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.SparseArray;
@@ -35,6 +36,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URLConnection;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -65,15 +68,11 @@ public class OcrActivity extends AppCompatActivity {
         UserModel userModel = (UserModel) Stash.getObject(Constants.USER, UserModel.class);
         Log.d(TAG, "onCreate: " + userModel.token);
 
-        cameraPermission = new String[]{Manifest.permission.CAMERA,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_MEDIA_IMAGES,
-                Manifest.permission.READ_MEDIA_VISUAL_USER_SELECTED,
-                Manifest.permission.READ_MEDIA_VIDEO};
-
         binding.pick.setOnClickListener(v -> {
             if (!checkCameraPermission()) {
                 requestCameraPermission();
             } else {
+                binding.Error.setVisibility(View.GONE);
                 pickCamera();
             }
         });
@@ -91,32 +90,53 @@ public class OcrActivity extends AppCompatActivity {
                 .compress(1024)
                 .maxResultSize(1080, 1080)
                 .start(IMAGE_PICK_CAMERA_CODE);
-
-//        ContentValues values = new ContentValues();
-//        values.put(MediaStore.Images.Media.TITLE, "NewPick");
-//        values.put(MediaStore.Images.Media.DESCRIPTION, "Image To Text");
-//        image_uri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
-//        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//        cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, image_uri);
-//        startActivityForResult(cameraIntent, IMAGE_PICK_CAMERA_CODE);
     }
 
+
     private boolean checkCameraPermission() {
-        boolean result = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == (PackageManager.PERMISSION_GRANTED);
-        boolean result1 = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == (PackageManager.PERMISSION_GRANTED);
-        boolean result2 = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_MEDIA_VIDEO) == (PackageManager.PERMISSION_GRANTED);
-        boolean result3 = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_MEDIA_IMAGES) == (PackageManager.PERMISSION_GRANTED);
-        boolean result4 = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_MEDIA_VISUAL_USER_SELECTED) == (PackageManager.PERMISSION_GRANTED);
-        return result && result1 && result2 && result3 && result4;
+        if (Build.VERSION.SDK_INT == Build.VERSION_CODES.TIRAMISU) {
+            boolean result = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == (PackageManager.PERMISSION_GRANTED);
+            boolean result2 = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_MEDIA_VIDEO) == (PackageManager.PERMISSION_GRANTED);
+            boolean result3 = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_MEDIA_IMAGES) == (PackageManager.PERMISSION_GRANTED);
+            return result && result2 && result3;
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+            boolean result = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == (PackageManager.PERMISSION_GRANTED);
+            boolean result2 = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_MEDIA_VIDEO) == (PackageManager.PERMISSION_GRANTED);
+            boolean result3 = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_MEDIA_IMAGES) == (PackageManager.PERMISSION_GRANTED);
+            boolean result4 = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_MEDIA_VISUAL_USER_SELECTED) == (PackageManager.PERMISSION_GRANTED);
+            return result && result2 && result3 && result4;
+        } else {
+            boolean result = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == (PackageManager.PERMISSION_GRANTED);
+            boolean result1 = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == (PackageManager.PERMISSION_GRANTED);
+            return result && result1;
+        }
     }
 
     private void requestCameraPermission() {
-        shouldShowRequestPermissionRationale(cameraPermission[0]);
-        shouldShowRequestPermissionRationale(cameraPermission[1]);
-        shouldShowRequestPermissionRationale(cameraPermission[2]);
-        shouldShowRequestPermissionRationale(cameraPermission[3]);
-        shouldShowRequestPermissionRationale(cameraPermission[4]);
-        ActivityCompat.requestPermissions(this, cameraPermission, CAMERA_REQUEST_CODE);
+        if (Build.VERSION.SDK_INT == Build.VERSION_CODES.TIRAMISU) {
+            cameraPermission = new String[]{Manifest.permission.CAMERA,
+                    Manifest.permission.READ_MEDIA_IMAGES,
+                    Manifest.permission.READ_MEDIA_VIDEO};
+            shouldShowRequestPermissionRationale(cameraPermission[0]);
+            shouldShowRequestPermissionRationale(cameraPermission[1]);
+            shouldShowRequestPermissionRationale(cameraPermission[2]);
+            ActivityCompat.requestPermissions(this, cameraPermission, CAMERA_REQUEST_CODE);
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+            cameraPermission = new String[]{Manifest.permission.CAMERA,
+                    Manifest.permission.READ_MEDIA_IMAGES,
+                    Manifest.permission.READ_MEDIA_VIDEO,
+                    Manifest.permission.READ_MEDIA_VISUAL_USER_SELECTED};
+            shouldShowRequestPermissionRationale(cameraPermission[0]);
+            shouldShowRequestPermissionRationale(cameraPermission[1]);
+            shouldShowRequestPermissionRationale(cameraPermission[2]);
+            shouldShowRequestPermissionRationale(cameraPermission[3]);
+            ActivityCompat.requestPermissions(this, cameraPermission, CAMERA_REQUEST_CODE);
+        } else {
+            cameraPermission = new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
+            shouldShowRequestPermissionRationale(cameraPermission[0]);
+            shouldShowRequestPermissionRationale(cameraPermission[1]);
+            ActivityCompat.requestPermissions(this, cameraPermission, CAMERA_REQUEST_CODE);
+        }
     }
 
     @Override
@@ -124,15 +144,33 @@ public class OcrActivity extends AppCompatActivity {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == CAMERA_REQUEST_CODE) {
             if (grantResults.length > 0) {
-                boolean cameraAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
-                boolean writeStorageAccepted = grantResults[1] == PackageManager.PERMISSION_GRANTED;
-                boolean READ_IMAGE = grantResults[2] == PackageManager.PERMISSION_GRANTED;
-                boolean READ_VIDEO = grantResults[3] == PackageManager.PERMISSION_GRANTED;
-                boolean READ_MEDIA = grantResults[4] == PackageManager.PERMISSION_GRANTED;
-                if (cameraAccepted && writeStorageAccepted && READ_MEDIA && READ_IMAGE && READ_VIDEO) {
-                    pickCamera();
+                if (Build.VERSION.SDK_INT == Build.VERSION_CODES.TIRAMISU) {
+                    boolean cameraAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
+                    boolean READ_IMAGE = grantResults[1] == PackageManager.PERMISSION_GRANTED;
+                    boolean READ_VIDEO = grantResults[2] == PackageManager.PERMISSION_GRANTED;
+                    if (cameraAccepted && READ_IMAGE && READ_VIDEO) {
+                        pickCamera();
+                    } else {
+                        Toast.makeText(this, "Permission denied", Toast.LENGTH_SHORT).show();
+                    }
+                } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+                    boolean cameraAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
+                    boolean READ_IMAGE = grantResults[1] == PackageManager.PERMISSION_GRANTED;
+                    boolean READ_VIDEO = grantResults[2] == PackageManager.PERMISSION_GRANTED;
+                    boolean READ_MEDIA = grantResults[3] == PackageManager.PERMISSION_GRANTED;
+                    if (cameraAccepted && READ_MEDIA && READ_IMAGE && READ_VIDEO) {
+                        pickCamera();
+                    } else {
+                        Toast.makeText(this, "Permission denied", Toast.LENGTH_SHORT).show();
+                    }
                 } else {
-                    Toast.makeText(this, "Permission denied", Toast.LENGTH_SHORT).show();
+                    boolean cameraAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
+                    boolean writeStorageAccepted = grantResults[1] == PackageManager.PERMISSION_GRANTED;
+                    if (cameraAccepted && writeStorageAccepted) {
+                        pickCamera();
+                    } else {
+                        Toast.makeText(this, "Permission denied", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         }
@@ -166,11 +204,29 @@ public class OcrActivity extends AppCompatActivity {
                     sb.append(myItem.getValue());
                     sb.append("\n");
                 }
-                String result = sb.toString().isEmpty() ? "No text Found" : sb.toString();
+                String result = sb.toString().isEmpty() && !isValidVehicleNumberPlate(sb.toString()) ? "No text Found / Not a valid Pattern" : sb.toString();
+                result = result.replace(" ", "").replace("-", "");
+//                if (!isValidVehicleNumberPlate(result)) {
+//                    binding.Error.setVisibility(View.VISIBLE);
+//                    binding.Error.setText("Ensure your image solely features the valid license plate text without any additional text.");
+//                }
+                Log.d(TAG, "isValidVehicleNumberPlate: " + isValidVehicleNumberPlate(result));
+                Log.d(TAG, "sb: " + !sb.toString().isEmpty());
+                Log.d(TAG, "both: " + (!sb.toString().isEmpty() && isValidVehicleNumberPlate(result)));
                 binding.result.getEditText().setText(result);
                 binding.submit.setEnabled(!sb.toString().isEmpty());
             }
         }
+    }
+
+    public static boolean isValidVehicleNumberPlate(String NUMBERPLATE) {
+        String regex = "^[A-Z]{2}[\\ -]{0,1}[0-9]{2}[\\ -]{0,1}[A-Z]{1,2}[\\ -]{0,1}[0-9]{4}$";
+        Pattern p = Pattern.compile(regex);
+        if (NUMBERPLATE == null) {
+            return false;
+        }
+        Matcher m = p.matcher(NUMBERPLATE);
+        return m.matches();
     }
 
     public void uploadFile() {
@@ -218,12 +274,6 @@ public class OcrActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     String responseString = response.body().string();
                     Log.d(TAG, "responseString: " + responseString);
-                    runOnUiThread(() -> {
-                        binding.imageIv.setImageResource(0);
-                        binding.imagePreviewCard.setVisibility(View.GONE);
-                        binding.result.getEditText().setText("");
-                        binding.submit.setEnabled(false);
-                    });
                     // {"success":true,"files":{"files":[{"name":"IMG_20240402_032244356.jpg","success":true}]},"filetoken":"71687312","version":"24.9.0"}
                     String fileToken = "";
                     String fileName = "";
@@ -245,6 +295,13 @@ public class OcrActivity extends AppCompatActivity {
                             .putExtra(Constants.fileToken, fileToken)
                             .putExtra(Constants.mimeType, mimeType)
                             .putExtra(Constants.Number, binding.result.getEditText().getText().toString()));
+
+                    runOnUiThread(() -> {
+                        binding.imageIv.setImageResource(0);
+                        binding.imagePreviewCard.setVisibility(View.GONE);
+                        binding.submit.setEnabled(false);
+                        binding.Error.setVisibility(View.GONE);
+                    });
                 } else {
                     runOnUiThread(() -> {
                         Toast.makeText(OcrActivity.this, "Image submit failed : " + response.message(), Toast.LENGTH_SHORT).show();
@@ -255,24 +312,4 @@ public class OcrActivity extends AppCompatActivity {
             }
         });
     }
-
-    // Method to convert file to byte array
-    private byte[] getFileDataFromDrawable(File file) {
-        FileInputStream fis;
-        byte[] byteArray = null;
-        try {
-            fis = new FileInputStream(file);
-            ByteArrayOutputStream bos = new ByteArrayOutputStream();
-            byte[] b = new byte[1024];
-            int bytesRead;
-            while ((bytesRead = fis.read(b)) != -1) {
-                bos.write(b, 0, bytesRead);
-            }
-            byteArray = bos.toByteArray();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return byteArray;
-    }
-
 }

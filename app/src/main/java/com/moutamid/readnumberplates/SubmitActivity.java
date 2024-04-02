@@ -14,8 +14,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.fxn.stash.Stash;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.moutamid.readnumberplates.databinding.ActivitySubmitBinding;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
@@ -40,12 +42,11 @@ public class SubmitActivity extends AppCompatActivity {
 
         requestQueue = VolleySingleton.getInstance(this).getRequestQueue();
 
-//        number = getIntent().getStringExtra(Constants.Number);
-//
-//        mimeType = getIntent().getStringExtra(Constants.mimeType);
-//        fileName = getIntent().getStringExtra(Constants.fileName);
-//        fileToken = getIntent().getStringExtra(Constants.fileToken);
+        number = getIntent().getStringExtra(Constants.Number);
 
+        mimeType = getIntent().getStringExtra(Constants.mimeType);
+        fileName = getIntent().getStringExtra(Constants.fileName);
+        fileToken = getIntent().getStringExtra(Constants.fileToken);
 
         Log.d(TAG, "fileToken: " + fileToken);
         Log.d(TAG, "fileName: " + fileName);
@@ -176,11 +177,27 @@ public class SubmitActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         Log.d(TAG, "onResponse: " + response.toString());
-                        runOnUiThread(() -> {
-                            progressDialog.dismiss();
-                            Toast.makeText(SubmitActivity.this, "Form submitted", Toast.LENGTH_SHORT).show();
-                            finish();
-                        });
+                        try {
+                            JSONObject SST = response.getJSONObject("SST");
+                            String SSTUID = SST.getString("SSTUID");
+                            String message = "Your form is submitted the SSTUID # is " + SSTUID;
+                            runOnUiThread(() -> {
+                                progressDialog.dismiss();
+                                Toast.makeText(SubmitActivity.this, "Form submitted", Toast.LENGTH_SHORT).show();
+                                new MaterialAlertDialogBuilder(SubmitActivity.this)
+                                        .setTitle("Form Submitted Successfully")
+                                        .setMessage(message)
+                                        .setPositiveButton("Close", (dialog, which) -> {
+                                            dialog.dismiss();
+                                            finish();
+                                        })
+                                        .show();
+                            });
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            runOnUiThread(progressDialog::dismiss);
+                        }
                     }
                 },
                 new Response.ErrorListener() {
