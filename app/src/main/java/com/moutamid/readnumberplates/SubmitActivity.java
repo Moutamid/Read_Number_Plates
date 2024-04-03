@@ -62,27 +62,45 @@ public class SubmitActivity extends AppCompatActivity {
             if (isChecked){
                 binding.CashValue.setVisibility(View.VISIBLE);
                 binding.CashQty.setVisibility(View.VISIBLE);
+
+                binding.CashValue.getEditText().setText("");
+                binding.CashQty.getEditText().setText("");
             } else {
                 binding.CashValue.setVisibility(View.GONE);
                 binding.CashQty.setVisibility(View.GONE);
+
+                binding.CashValue.getEditText().setText("0");
+                binding.CashQty.getEditText().setText("0");
             }
         });
         binding.ChequeYES.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked){
                 binding.ChequeValue.setVisibility(View.VISIBLE);
                 binding.ChequeNo.setVisibility(View.VISIBLE);
+
+                binding.ChequeNo.getEditText().setText("");
+                binding.ChequeValue.getEditText().setText("");
             } else {
                 binding.ChequeNo.setVisibility(View.GONE);
                 binding.ChequeValue.setVisibility(View.GONE);
+
+                binding.ChequeNo.getEditText().setText("0");
+                binding.ChequeValue.getEditText().setText("0");
             }
         });
         binding.TV.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked){
                 binding.TVValue.setVisibility(View.VISIBLE);
                 binding.TVQty.setVisibility(View.VISIBLE);
+
+                binding.TVQty.getEditText().setText("");
+                binding.TVValue.getEditText().setText("");
             } else {
                 binding.TVQty.setVisibility(View.GONE);
                 binding.TVValue.setVisibility(View.GONE);
+
+                binding.TVQty.getEditText().setText("0");
+                binding.TVValue.getEditText().setText("0");
             }
         });
 
@@ -90,72 +108,120 @@ public class SubmitActivity extends AppCompatActivity {
             if (isChecked){
                 binding.SareeQty.setVisibility(View.VISIBLE);
                 binding.SareeValue.setVisibility(View.VISIBLE);
+
+                binding.SareeQty.getEditText().setText("");
+                binding.SareeValue.getEditText().setText("");
             } else {
                 binding.SareeQty.setVisibility(View.GONE);
                 binding.SareeValue.setVisibility(View.GONE);
+
+                binding.SareeQty.getEditText().setText("0");
+                binding.SareeValue.getEditText().setText("0");
             }
         });
         binding.PressureCooker.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked){
                 binding.PressureCookerValue.setVisibility(View.VISIBLE);
                 binding.PressureCookerQty.setVisibility(View.VISIBLE);
+
+                binding.PressureCookerValue.getEditText().setText("");
+                binding.PressureCookerQty.getEditText().setText("");
             } else {
                 binding.PressureCookerValue.setVisibility(View.GONE);
                 binding.PressureCookerQty.setVisibility(View.GONE);
+
+                binding.PressureCookerValue.getEditText().setText("0");
+                binding.PressureCookerQty.getEditText().setText("0");
             }
         });
         binding.Watches.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked){
                 binding.WatchesQty.setVisibility(View.VISIBLE);
                 binding.WatchesValue.setVisibility(View.VISIBLE);
+
+                binding.WatchesQty.getEditText().setText("");
+                binding.WatchesValue.getEditText().setText("");
             } else {
                 binding.WatchesQty.setVisibility(View.GONE);
                 binding.WatchesValue.setVisibility(View.GONE);
+
+                binding.WatchesQty.getEditText().setText("0");
+                binding.WatchesValue.getEditText().setText("0");
             }
         });
         binding.liqureYES.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked){
                 binding.LiquorValue.setVisibility(View.VISIBLE);
                 binding.LiquorQty.setVisibility(View.VISIBLE);
+
+                binding.LiquorQty.getEditText().setText("");
+                binding.LiquorValue.getEditText().setText("");
             } else {
                 binding.LiquorQty.setVisibility(View.GONE);
                 binding.LiquorValue.setVisibility(View.GONE);
+
+                binding.LiquorQty.getEditText().setText("0");
+                binding.LiquorValue.getEditText().setText("0");
             }
         });
         binding.DrugsYES.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked){
                 binding.DrugsValue.setVisibility(View.VISIBLE);
                 binding.DrugsQty.setVisibility(View.VISIBLE);
+
+                binding.DrugsValue.getEditText().setText("");
+                binding.DrugsQty.getEditText().setText("");
             } else {
                 binding.DrugsValue.setVisibility(View.GONE);
                 binding.DrugsQty.setVisibility(View.GONE);
+
+                binding.DrugsValue.getEditText().setText("0");
+                binding.DrugsQty.getEditText().setText("0");
             }
         });
         binding.GoldYES.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked){
                 binding.GoldValue.setVisibility(View.VISIBLE);
                 binding.GoldQty.setVisibility(View.VISIBLE);
+
+                binding.GoldQty.getEditText().setText("");
+                binding.GoldValue.getEditText().setText("");
             } else {
                 binding.GoldQty.setVisibility(View.GONE);
                 binding.GoldValue.setVisibility(View.GONE);
+
+                binding.GoldQty.getEditText().setText("0");
+                binding.GoldValue.getEditText().setText("0");
             }
         });
         binding.SilverYES.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked){
                 binding.SilverQty.setVisibility(View.VISIBLE);
                 binding.SilverValue.setVisibility(View.VISIBLE);
+
+                binding.SilverQty.getEditText().setText("");
+                binding.SilverValue.getEditText().setText("");
             } else {
                 binding.SilverQty.setVisibility(View.GONE);
                 binding.SilverValue.setVisibility(View.GONE);
+
+                binding.SilverQty.getEditText().setText("0");
+                binding.SilverValue.getEditText().setText("0");
             }
         });
         binding.FreebieYES.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked){
                 binding.FreebieQty.setVisibility(View.VISIBLE);
                 binding.FreebieValue.setVisibility(View.VISIBLE);
+
+                binding.FreebieQty.getEditText().setText("");
+                binding.FreebieValue.getEditText().setText("");
             } else {
                 binding.FreebieQty.setVisibility(View.GONE);
                 binding.FreebieValue.setVisibility(View.GONE);
+
+                binding.FreebieQty.getEditText().setText("0");
+                binding.FreebieValue.getEditText().setText("0");
             }
         });
 
@@ -315,7 +381,7 @@ public class SubmitActivity extends AppCompatActivity {
             postData.put("Hashsign", "");
             postData.put("staffid", "7");
             postData.put("unit", "CHK App");
-            postData.put("Remarks", "");
+            postData.put("Remarks", binding.Remarks.getEditText().getText().toString());
 
             String file = "https://checkpost.vworks.in/uploads/temp__" + fileToken + "/" + fileName;
             Log.d(TAG, "getJson: " + file);

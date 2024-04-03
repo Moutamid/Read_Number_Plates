@@ -23,9 +23,14 @@ import androidx.core.content.ContextCompat;
 import com.android.volley.RequestQueue;
 import com.fxn.stash.Stash;
 import com.github.dhaval2404.imagepicker.ImagePicker;
-import com.google.android.gms.vision.Frame;
-import com.google.android.gms.vision.text.TextBlock;
-import com.google.android.gms.vision.text.TextRecognizer;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.mlkit.vision.common.InputImage;
+import com.google.mlkit.vision.text.Text;
+import com.google.mlkit.vision.text.TextRecognition;
+import com.google.mlkit.vision.text.TextRecognizer;
+import com.google.mlkit.vision.text.latin.TextRecognizerOptions;
 import com.moutamid.readnumberplates.databinding.ActivityOcrBinding;
 
 import org.json.JSONException;
@@ -56,7 +61,7 @@ public class OcrActivity extends AppCompatActivity {
     Uri image_uri;
     RequestQueue requestQueue;
     private static final String TAG = "OcrActivity";
-
+    TextRecognizer recognizer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,6 +81,8 @@ public class OcrActivity extends AppCompatActivity {
                 pickCamera();
             }
         });
+
+        recognizer = TextRecognition.getClient(TextRecognizerOptions.DEFAULT_OPTIONS);
 
         binding.submit.setOnClickListener(v -> {
             uploadFile();
@@ -190,7 +197,46 @@ public class OcrActivity extends AppCompatActivity {
             binding.imageIv.setImageURI(image_uri);
             binding.imagePreviewCard.setVisibility(View.VISIBLE);
             //get drawable bitmap for text recognition
-            BitmapDrawable bitmapDrawable = (BitmapDrawable) binding.imageIv.getDrawable();
+
+            InputImage image;
+            try {
+                image = InputImage.fromFilePath(OcrActivity.this, image_uri);
+                Task<Text> result =
+                        recognizer.process(image)
+                                .addOnSuccessListener(new OnSuccessListener<Text>() {
+                                    @Override
+                                    public void onSuccess(Text visionText) {
+                                        // Task completed successfully
+                                        String resultText = visionText.getText();
+                                        Log.d(TAG, "onSuccess: " + resultText);
+                                        binding.result.getEditText().setText(resultText);
+                                        binding.submit.setEnabled(true);
+                                    }
+                                })
+                                .addOnFailureListener(
+                                        new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+                                                // Task failed with an exception
+                                                // ...
+                                                Toast.makeText(OcrActivity.this, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+
+//                String re = result.getResult();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+/*            final String ANDROID_DATA_DIR = "/data/data/" + getPackageName();
+            String filePath = "file:///android_asset/runtime_dir/openalpr.conf";
+            final String openAlprConfFile = ANDROID_DATA_DIR + File.separatorChar + "runtime_data" + File.separatorChar + "openalpr.conf";
+            Log.d(TAG, "onActivityResult: " + openAlprConfFile) ;
+            String result = OpenALPR.Factory.create(OcrActivity.this, ANDROID_DATA_DIR).recognizeWithCountryRegionNConfig("in", "", file.getAbsolutePath(), filePath, 1);
+            Log.d(TAG, "onActivityResult: " + result);*/
+
+
+/*            BitmapDrawable bitmapDrawable = (BitmapDrawable) binding.imageIv.getDrawable();
             Bitmap bitmap = bitmapDrawable.getBitmap();
             TextRecognizer recognizer = new TextRecognizer.Builder(getApplicationContext()).build();
             if (!recognizer.isOperational()) {
@@ -220,7 +266,7 @@ public class OcrActivity extends AppCompatActivity {
                 Log.d(TAG, "both: " + (!sb.toString().isEmpty() && isValidVehicleNumberPlate(result)));
                 binding.result.getEditText().setText(result);
                 binding.submit.setEnabled((!sb.toString().isEmpty() && isValidVehicleNumberPlate(result)));
-            }
+            }*/
         }
     }
 
