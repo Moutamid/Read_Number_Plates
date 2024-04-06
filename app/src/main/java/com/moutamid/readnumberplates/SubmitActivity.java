@@ -54,7 +54,7 @@ public class SubmitActivity extends AppCompatActivity {
 
         binding.VehicleNo.getEditText().setText(number);
 
-        String datetime = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+        String datetime = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
         binding.OtherMaterials.getEditText().setText(datetime);
 
         binding.submit.setOnClickListener(v -> {
@@ -310,7 +310,6 @@ public class SubmitActivity extends AppCompatActivity {
             String Silver = binding.SilverYES.isChecked() ? "Yes" : "No";
             String Freebie = binding.FreebieYES.isChecked() ? "Yes" : "No";
 
-
 //            postData.put("SSTUID", Integer.parseInt(binding.SSTUID.getEditText().getText().toString()));
             postData.put("VehicleNo", binding.VehicleNo.getEditText().getText().toString());
 
@@ -338,7 +337,8 @@ public class SubmitActivity extends AppCompatActivity {
             postData.put("Watches_qty", Integer.parseInt(binding.WatchesQty.getEditText().getText().toString()));
             postData.put("Watches_value", Integer.parseInt(binding.WatchesValue.getEditText().getText().toString()));
 
-            postData.put("Other_Materials", "");
+            String Other_Materials = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date().getTime()); // 06/04/2024
+            postData.put("Other_Materials", Other_Materials);
 
             postData.put("Misc", binding.Misc.getEditText().getText().toString());
             postData.put("Misc_qty", Integer.parseInt(binding.MiscQty.getEditText().getText().toString()));
@@ -374,7 +374,7 @@ public class SubmitActivity extends AppCompatActivity {
                     postData.getInt("Misc_value") + postData.getInt("Liquor_value") + postData.getInt("Drugs_Value") +
                     postData.getInt("Gold_Value") + postData.getInt("Silver_Value") + postData.getInt("Freebie_Value");
 
-            String datetime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(new Date()); // 2024-03-22 11:25:41
+            String datetime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(new Date().getTime()); // 2024-03-22 11:25:41
 //            String auditid = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date()); // 2024-03-22
 
             postData.put("Total_qty", Total_qty);
@@ -396,7 +396,7 @@ public class SubmitActivity extends AppCompatActivity {
 //            image_ref.put("file", file);
 //            image_ref.put("name", fileName);
 //            Log.d(TAG, "image_ref: " + image_ref.toString());
-            postData.put("image_ref", file);
+            postData.put("image_ref", image);
             Log.d(TAG, "postData: " + postData.toString());
         } catch (Exception e) {
             e.printStackTrace();
