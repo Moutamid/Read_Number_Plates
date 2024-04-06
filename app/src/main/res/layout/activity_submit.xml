@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:paddingHorizontal="12dp"
-            android:text="Submit Image"
+            android:text="Observation Log Entry"
             android:textColor="@color/white"
             android:textSize="20dp" />
 
@@ -1065,7 +1065,7 @@
                 android:layout_below="@id/top"
                 android:layout_marginHorizontal="15dp"
                 android:layout_marginTop="10dp"
-                android:hint="Other Materials"
+                android:hint="Today Date"
                 app:boxBackgroundColor="@color/box"
                 app:boxCornerRadiusBottomEnd="12dp"
                 app:boxCornerRadiusBottomStart="12dp"
@@ -1078,6 +1078,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:inputType="textPersonName"
+                    android:focusableInTouchMode="false"
+                    android:focusable="false"
+                    android:cursorVisible="false"
+                    android:clickable="false"
                     android:text="" />
 
             </com.google.android.material.textfield.TextInputLayout>

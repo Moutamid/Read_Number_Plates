@@ -17,6 +17,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Read Number Plates"
+rootProject.name = "CheckPost-Log"
 include(":app")
  

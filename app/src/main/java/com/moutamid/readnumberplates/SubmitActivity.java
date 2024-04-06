@@ -54,6 +54,9 @@ public class SubmitActivity extends AppCompatActivity {
 
         binding.VehicleNo.getEditText().setText(number);
 
+        String datetime = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+        binding.OtherMaterials.getEditText().setText(datetime);
+
         binding.submit.setOnClickListener(v -> {
             postData();
         });
@@ -335,7 +338,7 @@ public class SubmitActivity extends AppCompatActivity {
             postData.put("Watches_qty", Integer.parseInt(binding.WatchesQty.getEditText().getText().toString()));
             postData.put("Watches_value", Integer.parseInt(binding.WatchesValue.getEditText().getText().toString()));
 
-            postData.put("Other_Materials", binding.OtherMaterials.getEditText().getText().toString());
+            postData.put("Other_Materials", "");
 
             postData.put("Misc", binding.Misc.getEditText().getText().toString());
             postData.put("Misc_qty", Integer.parseInt(binding.MiscQty.getEditText().getText().toString()));
@@ -379,18 +382,21 @@ public class SubmitActivity extends AppCompatActivity {
             postData.put("datetime", datetime);
 //            postData.put("auditid", auditid);
             postData.put("Hashsign", "");
-            postData.put("staffid", "7");
+
+            UserModel userModel = (UserModel) Stash.getObject(Constants.USER, UserModel.class);
+            postData.put("staffid", userModel.name);
             postData.put("unit", "CHK App");
             postData.put("Remarks", binding.Remarks.getEditText().getText().toString());
 
             String file = "https://checkpost.vworks.in/uploads/temp__" + fileToken + "/" + fileName;
-            Log.d(TAG, "getJson: " + file);
-            JSONObject image_ref = new JSONObject();
-            image_ref.put("type", mimeType);
-            image_ref.put("file", file);
-            image_ref.put("name", fileName);
-            Log.d(TAG, "image_ref: " + image_ref.toString());
-            postData.put("image_ref", image_ref);
+            String image = fileToken + "/" + fileName;
+            Log.d(TAG, "getJson: " + image);
+//            JSONObject image_ref = new JSONObject();
+//            image_ref.put("type", mimeType);
+//            image_ref.put("file", file);
+//            image_ref.put("name", fileName);
+//            Log.d(TAG, "image_ref: " + image_ref.toString());
+            postData.put("image_ref", file);
             Log.d(TAG, "postData: " + postData.toString());
         } catch (Exception e) {
             e.printStackTrace();

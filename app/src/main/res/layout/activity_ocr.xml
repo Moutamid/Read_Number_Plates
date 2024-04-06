@@ -20,7 +20,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:paddingHorizontal="12dp"
-            android:text="Pick an Image"
+            android:gravity="center"
+            android:text="Capture the Number Plate"
             android:textColor="@color/white"
             android:textSize="26dp" />
 
@@ -28,6 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingHorizontal="14dp"
+            android:visibility="gone"
             android:text="Extract Text from Image"
             android:textColor="@color/text"
             android:textSize="16dp" />
@@ -127,7 +129,7 @@
         android:layout_marginTop="15dp"
         android:layout_marginEnd="15dp"
         android:layout_marginBottom="15dp"
-        android:text="Pick Image"
+        android:text="Capture Number Plate"
         android:textSize="18sp"
         app:cornerRadius="12sp" />
 
